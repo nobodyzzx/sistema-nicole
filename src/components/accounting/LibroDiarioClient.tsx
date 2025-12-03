@@ -29,6 +29,9 @@ export default function LibroDiarioClient() {
     );
   }
 
+  // Validar que lista sea un array
+  const listaValida = Array.isArray(lista) ? lista : [];
+
   return (
     <section className="mt-6">
       <div className="rounded-2xl border-2 border-blue-300 bg-white p-6 shadow">
@@ -98,7 +101,7 @@ export default function LibroDiarioClient() {
                   align: 'right',
                 });
 
-                const cuerpo = lista.flatMap((a) =>
+                const cuerpo = listaValida.flatMap((a) =>
                   a.movimientos.map((m) => [
                     a.fecha,
                     a.concepto,
@@ -134,7 +137,7 @@ export default function LibroDiarioClient() {
             Exportar PDF
           </button>
         </div>
-        {lista.length === 0 ? (
+        {listaValida.length === 0 ? (
           <div className="text-gray-600">No hay asientos registrados aún.</div>
         ) : (
           <table className="w-full text-sm">
@@ -147,7 +150,7 @@ export default function LibroDiarioClient() {
               </tr>
             </thead>
             <tbody className="divide-y divide-blue-200">
-              {lista.map((a) => (
+              {listaValida.map((a) => (
                 <tr key={a.id}>
                   <td className="py-2 px-3 font-mono">{a.fecha}</td>
                   <td className="py-2 px-3">{a.concepto}</td>

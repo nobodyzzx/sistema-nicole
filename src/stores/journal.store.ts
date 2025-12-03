@@ -12,26 +12,36 @@ export const asientos = atom<ReadonlyArray<Asiento>>([]);
 
 const STORAGE_KEY = 'scu_asientos_v1';
 let initialized = false;
+let isHydrating = false;
 
 export function loadAsientos() {
   try {
     if (typeof window === 'undefined') return;
+    isHydrating = true;
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
+    if (!raw) {
+      initialized = true;
+      isHydrating = false;
+      return;
+    }
     const parsed = JSON.parse(raw) as ReadonlyArray<Asiento>;
     if (Array.isArray(parsed)) {
       asientos.set(parsed);
       console.info('[journal.store] Asientos cargados:', parsed.length);
     }
     initialized = true;
+    isHydrating = false;
   } catch (err) {
     console.error('Error cargando asientos desde storage:', err);
+    initialized = true;
+    isHydrating = false;
   }
 }
 
 export function saveAsientos() {
   try {
     if (typeof window === 'undefined') return;
+    if (isHydrating) return; // No persistir durante la hidratación inicial
     const curr = asientos.get();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(curr));
     console.info('[journal.store] Asientos guardados:', curr.length);
@@ -41,39 +51,13 @@ export function saveAsientos() {
 }
 
 // Persistir automáticamente cuando cambien
-asientos.subscribe(() => {
-  if (!initialized && typeof window !== 'undefined') {
-    // Evitar persistir antes de completar la carga inicial
-    return;
-  }
-  saveAsientos();
-});
-
-// Inicializar inmediatamente al cargar el módulo en el navegador
 if (typeof window !== 'undefined') {
-  try {
-    loadAsientos();
-  } catch (err) {
-    console.error('Error inicializando asientos en módulo:', err);
-  }
-  // Mantener sincronizado si otra pestaña modifica el storage
-  window.addEventListener('storage', (ev) => {
-    if (ev.key === STORAGE_KEY) {
-      try {
-        const raw = ev.newValue;
-        if (!raw) return;
-        const parsed = JSON.parse(raw) as ReadonlyArray<Asiento>;
-        if (Array.isArray(parsed)) {
-          asientos.set(parsed);
-          console.info(
-            '[journal.store] Asientos sincronizados por storage event:',
-            parsed.length
-          );
-        }
-      } catch (err) {
-        console.error('Error sincronizando asientos desde storage event:', err);
-      }
+  asientos.subscribe(() => {
+    if (!initialized) {
+      // Evitar persistir antes de completar la carga inicial
+      return;
     }
+    saveAsientos();
   });
 }
 

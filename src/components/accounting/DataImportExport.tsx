@@ -3,14 +3,19 @@ import { asientos } from '../../stores/journal.store';
 import { compras } from '../../stores/compras.store';
 import { configuracion } from '../../stores/company.store';
 import { Download, Upload, FileJson, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function DataImportExport() {
+  const [mounted, setMounted] = useState(false);
   const asientosList = useStore(asientos);
   const comprasList = useStore(compras);
   const config = useStore(configuracion);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const exportarDatos = () => {
     try {

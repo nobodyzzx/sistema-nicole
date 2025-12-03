@@ -25,8 +25,15 @@ export default function LibroMayorClient() {
         monto: number;
       }>
     >();
+    // Validar que lista sea un array válido
+    if (!Array.isArray(lista)) {
+      return map;
+    }
     for (const a of lista) {
+      if (!a || !Array.isArray(a.movimientos)) continue;
       for (const m of a.movimientos) {
+        if (!m || !m.tipo || !m.cuentaCodigo || typeof m.monto !== 'number')
+          continue;
         const arr = map.get(m.cuentaCodigo) || [];
         arr.push({
           fecha: a.fecha,

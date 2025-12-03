@@ -20,10 +20,33 @@ export default function BalanceGeneralClient() {
 
   const balanceData = useMemo(() => {
     const saldos = new Map<string, number>();
+    // Validar que lista sea un array válido
+    if (!Array.isArray(lista)) {
+      return {
+        activoCorriente: [],
+        activoNoCorriente: [],
+        pasivoCorriente: [],
+        pasivoNoCorriente: [],
+        patrimonio: [],
+        totalActivoCorriente: 0,
+        totalActivoNoCorriente: 0,
+        totalActivo: 0,
+        totalPasivoCorriente: 0,
+        totalPasivoNoCorriente: 0,
+        totalPasivo: 0,
+        totalPatrimonio: 0,
+        totalPasivoPatrimonio: 0,
+        balanceado: true,
+        diferencia: 0,
+      };
+    }
     for (const a of lista) {
+      if (!a || !Array.isArray(a.movimientos)) continue;
       for (const m of a.movimientos) {
+        if (!m || !m.tipo || !m.cuentaCodigo) continue;
         const tipo = String(m.tipo).toLowerCase();
         const monto = typeof m.monto === 'number' ? m.monto : Number(m.monto);
+        if (isNaN(monto)) continue;
         const codigo = String(m.cuentaCodigo);
         const current = saldos.get(codigo) || 0;
         if (tipo === 'debe') saldos.set(codigo, current + monto);

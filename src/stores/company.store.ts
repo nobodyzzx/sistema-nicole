@@ -2,6 +2,7 @@ import { atom } from 'nanostores';
 import type { Configuracion, InfoLegalBO, Asiento } from '../types/accounting';
 
 const STORAGE_KEY = 'scu_config_v1';
+let initialized = false;
 
 function currentPeriodo(): string {
   const d = new Date();
@@ -28,7 +29,10 @@ export function loadConfiguracion() {
   try {
     if (typeof window === 'undefined') return;
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
+    if (!raw) {
+      initialized = true;
+      return;
+    }
     const parsed = JSON.parse(raw) as Configuracion;
     if (parsed && typeof parsed === 'object') {
       configuracion.set({
@@ -44,14 +48,17 @@ export function loadConfiguracion() {
       });
       console.info('[company.store] Configuración cargada');
     }
+    initialized = true;
   } catch (err) {
     console.error('Error cargando configuración:', err);
+    initialized = true;
   }
 }
 
 export function saveConfiguracion() {
   try {
     if (typeof window === 'undefined') return;
+    if (!initialized) return; // No guardar antes de cargar
     const curr = configuracion.get();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(curr));
     console.info('[company.store] Configuración guardada');
@@ -60,13 +67,10 @@ export function saveConfiguracion() {
   }
 }
 
-configuracion.subscribe(() => {
-  if (typeof window === 'undefined') return;
-  saveConfiguracion();
-});
-
 if (typeof window !== 'undefined') {
-  loadConfiguracion();
+  configuracion.subscribe(() => {
+    saveConfiguracion();
+  });
 }
 
 export function setInfoLegal(info: Partial<InfoLegalBO>) {

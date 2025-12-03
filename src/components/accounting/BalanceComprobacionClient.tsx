@@ -21,8 +21,15 @@ export default function BalanceComprobacionClient() {
 
   const rows = useMemo(() => {
     const sumas = new Map<string, { debe: number; haber: number }>();
+    // Validar que lista sea un array válido
+    if (!Array.isArray(lista)) {
+      return [];
+    }
     for (const a of lista) {
+      if (!a || !Array.isArray(a.movimientos)) continue;
       for (const m of a.movimientos) {
+        if (!m || !m.tipo || !m.cuentaCodigo || typeof m.monto !== 'number')
+          continue;
         const curr = sumas.get(m.cuentaCodigo) || { debe: 0, haber: 0 };
         if (m.tipo === 'debe') curr.debe += m.monto;
         else curr.haber += m.monto;

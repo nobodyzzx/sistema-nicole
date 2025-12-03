@@ -455,7 +455,7 @@ const year = new Date().getFullYear();
       </div>
     </header>
     <main class="flex-1 max-w-7xl mx-auto px-4 md:px-8 pt-24 pb-10 w-full">
-      <InitStores client:load />
+      <InitStores client:only="react" />
       <slot />
     </main>
     <footer class="mt-auto border-t-2 border-brand-200 bg-white">
