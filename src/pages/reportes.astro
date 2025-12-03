@@ -1,0 +1,56 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../init';
+import { estaBalanceado } from '../stores/journal.store';
+import BalanceGeneralClient from '../components/accounting/BalanceGeneralClient';
+import BalanceComprobacionClient from '../components/accounting/BalanceComprobacionClient';
+import { configuracion } from '../stores/company.store';
+const ok = estaBalanceado.get();
+const cfg = configuracion.get();
+---
+
+<BaseLayout title="Reportes">
+  <section
+    class="pt-6 pb-6 px-6 md:px-8 bg-white border-2 border-brand-300 rounded-2xl shadow-lg"
+  >
+    <div
+      class="flex items-center justify-between mb-4 pb-4 border-b-2 border-purple-200"
+    >
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-purple-700"
+          ><line x1="12" x2="12" y1="20" y2="10"></line><line
+            x1="18"
+            x2="18"
+            y1="20"
+            y2="4"></line><line x1="6" x2="6" y1="20" y2="16"></line></svg
+        >
+        <h1 class="text-xl font-bold text-purple-700">Reportes Contables</h1>
+      </div>
+      <div class="text-sm text-gray-700">
+        <div class="font-semibold">{cfg.infoLegal?.entidad || 'Entidad'}</div>
+        <div class="text-gray-700">
+          NIT: {cfg.infoLegal?.nit || 'N/A'} &nbsp;|&nbsp; Periodo: {
+            cfg.periodo
+          }
+        </div>
+      </div>
+    </div>
+    <section class="mt-6">
+      <BalanceGeneralClient client:load />
+    </section>
+    <section class="mt-6">
+      <BalanceComprobacionClient client:load />
+    </section>
+  </section>
+</BaseLayout>

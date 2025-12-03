@@ -1,0 +1,100 @@
+@import 'tailwindcss';
+
+/* Mantener Tailwind puro: sin componentes personalizados */
+
+/* Estilos de impresión A4 para reportes */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .report-print,
+  .print\:container {
+    width: 100% !important;
+    max-width: 180mm !important;
+    margin: 0 auto !important;
+  }
+
+  .report-print,
+  .report-print * {
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+      Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji',
+      'Segoe UI Emoji' !important;
+    line-height: 1.35 !important;
+  }
+
+  h1 {
+    font-size: 18pt !important;
+    margin: 0 0 8pt !important;
+  }
+  h2 {
+    font-size: 16pt !important;
+    margin: 0 0 6pt !important;
+  }
+  h3 {
+    font-size: 13pt !important;
+    margin: 0 0 6pt !important;
+  }
+  h4 {
+    font-size: 11pt !important;
+    margin: 0 0 4pt !important;
+  }
+  p,
+  span,
+  td,
+  th,
+  li,
+  div {
+    font-size: 10pt !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  th,
+  td {
+    padding: 6pt 6pt !important;
+    border: 0.5pt solid #cccccc !important;
+  }
+  thead tr {
+    background: #f3f4f6 !important;
+    color: #111111 !important;
+  }
+  tbody tr:nth-child(odd) {
+    background: #ffffff !important;
+  }
+  tbody tr:nth-child(even) {
+    background: #fafafa !important;
+  }
+
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  button,
+  a[href] {
+    display: none !important;
+  }
+
+  .rounded-full {
+    border-radius: 3pt !important;
+  }
+  .ring-2 {
+    border: 0.5pt solid #cccccc !important;
+  }
+
+  .avoid-break,
+  .card,
+  .table-block {
+    page-break-inside: avoid !important;
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-12-02T21:23:54.528Z",
+  "configuracion": {
+    "periodo": "2025-02",
+    "infoLegal": {
+      "entidad": "Mutual La Primera",
+      "nit": "1020304050",
+      "ciudad": "La Paz",
+      "direccion": "Av. Camacho No. 1234, Edificio Mutual, Piso 5",
+      "telefono": "(+591) 2-2345678",
+      "representante": "Lic. María Elena Gutiérrez Vásquez"
+    }
+  },
+  "asientos": [
+    {
+      "id": "asiento-1733000000000",
+      "fecha": "2025-02-01",
+      "concepto": "Capital aportado Bs 65,000. (Comprobante de depósito)",
+      "movimientos": [
+        {
+          "cuentaCodigo": "10",
+          "tipo": "debe",
+          "monto": 65000
+        },
+        {
+          "cuentaCodigo": "50",
+          "tipo": "haber",
+          "monto": 65000
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000060000",
+      "fecha": "2025-02-01",
+      "concepto": "Compra de vehículo Bs 24,000. (Factura)",
+      "movimientos": [
+        {
+          "cuentaCodigo": "33",
+          "tipo": "debe",
+          "monto": 24000
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 24000
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000120000",
+      "fecha": "2025-02-05",
+      "concepto": "Pago de seguro del vehículo Bs 1,500. (Factura) - Gasto Anticipado",
+      "movimientos": [
+        {
+          "cuentaCodigo": "18",
+          "tipo": "debe",
+          "monto": 1500
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 1500
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000180000",
+      "fecha": "2025-02-05",
+      "concepto": "Venta a crédito Bs 7,200. (Factura) - Ingreso por Venta",
+      "movimientos": [
+        {
+          "cuentaCodigo": "12",
+          "tipo": "debe",
+          "monto": 7200
+        },
+        {
+          "cuentaCodigo": "70",
+          "tipo": "haber",
+          "monto": 7200
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000240000",
+      "fecha": "2025-02-10",
+      "concepto": "Cobro de cliente Bs 3,000. (Recibo)",
+      "movimientos": [
+        {
+          "cuentaCodigo": "10",
+          "tipo": "debe",
+          "monto": 3000
+        },
+        {
+          "cuentaCodigo": "12",
+          "tipo": "haber",
+          "monto": 3000
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000300000",
+      "fecha": "2025-02-10",
+      "concepto": "Pago de combustible Bs 700. (Factura) - Suministros (Gasto por Naturaleza)",
+      "movimientos": [
+        {
+          "cuentaCodigo": "60",
+          "tipo": "debe",
+          "monto": 700
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 700
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000360000",
+      "fecha": "2025-02-15",
+      "concepto": "Pago de sueldos Bs 3,800. (Comprobante de pago)",
+      "movimientos": [
+        {
+          "cuentaCodigo": "62",
+          "tipo": "debe",
+          "monto": 3800
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 3800
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000420000",
+      "fecha": "2025-02-15",
+      "concepto": "Pago de internet Bs 300. (Factura) - Servicios Básicos",
+      "movimientos": [
+        {
+          "cuentaCodigo": "63",
+          "tipo": "debe",
+          "monto": 300
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 300
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000480000",
+      "fecha": "2025-02-20",
+      "concepto": "Pago de proveedor Bs 2,700. (Pagaré) - Obligación Financiera",
+      "movimientos": [
+        {
+          "cuentaCodigo": "45",
+          "tipo": "debe",
+          "monto": 2700
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 2700
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000540000",
+      "fecha": "2025-02-20",
+      "concepto": "Compra de mobiliario Bs 2,000. (Factura) - Compra a Terceros",
+      "movimientos": [
+        {
+          "cuentaCodigo": "33",
+          "tipo": "debe",
+          "monto": 2000
+        },
+        {
+          "cuentaCodigo": "42",
+          "tipo": "haber",
+          "monto": 2000
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000600000",
+      "fecha": "2025-02-25",
+      "concepto": "Pago de impuestos Bs 1,100. (Comprobante de pago)",
+      "movimientos": [
+        {
+          "cuentaCodigo": "40",
+          "tipo": "debe",
+          "monto": 1100
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 1100
+        }
+      ]
+    },
+    {
+      "id": "asiento-1733000660000",
+      "fecha": "2025-02-25",
+      "concepto": "Depósito bancario Bs 3,800. (Comprobante de depósito) - Traspaso Caja a Banco",
+      "movimientos": [
+        {
+          "cuentaCodigo": "10",
+          "tipo": "debe",
+          "monto": 3800
+        },
+        {
+          "cuentaCodigo": "10",
+          "tipo": "haber",
+          "monto": 3800
+        }
+      ]
+    }
+  ],
+  "compras": []
+}

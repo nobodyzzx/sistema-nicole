@@ -1,0 +1,24 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LibroDiarioClient from '../components/accounting/LibroDiarioClient';
+---
+
+<BaseLayout title="Libro Diario">
+  <section
+    class="pt-6 pb-6 px-6 md:px-8 bg-white border-2 border-brand-300 rounded-2xl shadow-lg"
+  >
+    <h1
+      class="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-700"
+    >
+      📘 Libro Diario
+    </h1>
+    <p class="mt-4 text-gray-800 max-w-2xl text-lg">
+      Registro cronológico de asientos contables.
+    </p>
+  </section>
+
+  <section class="mt-6">
+    <LibroDiarioClient client:load />
+  </section>
+</BaseLayout>

@@ -1,16 +1,83 @@
 ---
-
+import '../init';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { cuentasHojasCount } from '../stores/accounts.store';
+import CompanyInfoCard from '../components/accounting/CompanyInfoCard.tsx';
+import FacturaDemo from '../components/accounting/FacturaDemo.tsx';
+import DataImportExport from '../components/accounting/DataImportExport.tsx';
+const hojasCount = cuentasHojasCount.get();
+export const prerender = false;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Sistema Contable">
+  <section
+    class="pt-6 pb-8 px-6 md:px-8 bg-gradient-to-br from-brand-100 via-purple-100 to-fuchsia-100 border-2 border-brand-300 rounded-2xl shadow-lg"
+  >
+    <h1
+      class="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-700"
+    >
+      ✨ Simulador de Asientos Contables
+    </h1>
+    <p class="mt-4 text-gray-800 max-w-2xl text-lg">
+      <span class="font-semibold text-brand-700">Mutual La Primera</span> — Sistema
+      contable universitario desarrollado con Astro, Tailwind, React y Nano Stores.
+      Gestiona asientos y consulta reportes con una interfaz moderna y colorida.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/asientos"
+        class="inline-flex items-center px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all"
+        >📝 Registrar Asiento</a
+      >
+      <a
+        href="/reportes"
+        class="inline-flex items-center px-6 py-3 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all"
+        >📊 Ver Reportes</a
+      >
+      <span
+        class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-emerald-100 text-emerald-700 ring-2 ring-emerald-300 shadow-sm"
+        >🌿 Cuentas hoja: {hojasCount}</span
+      >
+    </div>
+  </section>
+
+  <section class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <DataImportExport client:load />
+    <div
+      class="rounded-2xl border-2 border-purple-300 bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+    >
+      <div class="text-3xl mb-2">⚡</div>
+      <div class="font-bold text-lg text-purple-700">Accesos rápidos</div>
+      <p class="mt-2 text-sm text-gray-700 mb-4">
+        Navega rápidamente a las secciones principales del sistema.
+      </p>
+      <div class="flex flex-col gap-2">
+        <a
+          href="/asientos"
+          class="w-full px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-md transition-all text-center"
+          >📝 Nuevo Asiento</a
+        >
+        <a
+          href="/reportes"
+          class="w-full px-4 py-2 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-md transition-all text-center"
+          >📊 Ver Reportes</a
+        >
+        <a
+          href="/compras"
+          class="w-full px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-md transition-all text-center"
+          >🛒 Registrar Compra</a
+        >
+        <a
+          href="/libro-diario"
+          class="w-full px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-md transition-all text-center"
+          >📘 Libro Diario</a
+        >
+      </div>
+    </div>
+    <FacturaDemo client:load />
+  </section>
+
+  <section class="mt-8">
+    <CompanyInfoCard client:load />
+  </section>
+</BaseLayout>

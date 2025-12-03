@@ -1,0 +1,25 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ComprasForm from '../components/accounting/ComprasForm.tsx';
+import '../init';
+---
+
+<BaseLayout title="Compras">
+  <section
+    class="pt-6 pb-6 px-6 md:px-8 bg-gradient-to-br from-blue-100 via-cyan-100 to-teal-100 border-2 border-blue-300 rounded-2xl shadow-lg"
+  >
+    <h1
+      class="text-4xl md:text-5xl font-extrabold tracking-tight text-blue-700"
+    >
+      🛒 Registrar Compra
+    </h1>
+    <p class="mt-4 text-gray-800 max-w-2xl text-lg">
+      Registra las compras realizadas con sus detalles de facturación, proveedor
+      y conceptos.
+    </p>
+  </section>
+  <div class="mt-6">
+    <ComprasForm client:load />
+  </div>
+</BaseLayout>
