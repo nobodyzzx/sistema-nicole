@@ -96,10 +96,36 @@ Para desplegar en un servidor web:
 
 #### Vercel (Recomendado)
 
-1. Crea una cuenta en [Vercel](https://vercel.com)
-2. Importa el proyecto desde GitHub/GitLab
-3. Vercel detectará automáticamente que es un proyecto Astro
-4. Haz clic en "Deploy"
+El proyecto ya está configurado con el adaptador `@astrojs/vercel` para SSR.
+
+**Despliegue desde GitHub:**
+
+1. Sube tu código a GitHub
+  ```bash
+  git add .
+  git commit -m "Deploy to Vercel"
+  git push origin main
+  ```
+
+2. Ve a [Vercel](https://vercel.com) e inicia sesión con GitHub
+
+3. Click en **"Add New Project"**
+
+4. Importa tu repositorio `sistema-nicole`
+
+5. Vercel detectará automáticamente:
+  - Framework: Astro
+  - Build Command: `pnpm build`
+  - Output Directory: `.vercel/output`
+  - Install Command: `pnpm install`
+
+6. Click en **"Deploy"**
+
+7. En 2-3 minutos tu aplicación estará en línea en `https://tu-proyecto.vercel.app`
+
+**Variables de Entorno (si las necesitas):**
+
+En Vercel Dashboard → Settings → Environment Variables, agrega cualquier variable necesaria.
 
 #### Netlify
 
